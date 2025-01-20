@@ -1,0 +1,65 @@
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  background: #0a0a0a;
+  color: #e4e4e7;
+}
+
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  position: relative;
+  background: linear-gradient(to bottom right, #0f0f0f, #1a1a1a);
+}
+
+.content-container {
+  min-height: 100%;
+  padding: 20px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Scrollbar styling */
+.main-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.main-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.main-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.main-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .dashboard-layout {
+    flex-direction: column;
+  }
+
+  .main-content {
+    margin-left: 0;
+    height: calc(100vh - 60px); /* Adjust based on mobile menu height */
+  }
+
+  .content-container {
+    padding: 16px;
+  }
+}

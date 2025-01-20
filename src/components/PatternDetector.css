@@ -1,0 +1,165 @@
+.pattern-detector {
+  padding: 2rem;
+  background: var(--background-light);
+  border-radius: 12px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.pattern-detector h2 {
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.controls-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.control-group {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.control-group h3 {
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.control {
+  margin-bottom: 1rem;
+}
+
+.control label {
+  display: block;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.control select {
+  width: 100%;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.control select option {
+  background: var(--background-dark);
+  color: var(--text-primary);
+}
+
+.control input[type="range"] {
+  width: 100%;
+  -webkit-appearance: none;
+  height: 4px;
+  background: rgba(99, 179, 237, 0.3);
+  border-radius: 2px;
+}
+
+.control input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.control input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+.control input[type="checkbox"] + span {
+  color: var(--text-secondary);
+}
+
+.pattern-visualization {
+  flex: 1;
+  min-height: 300px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 8px;
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholder-viz {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.pattern-list {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.pattern-list h3 {
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.list-container {
+  min-height: 100px;
+}
+
+.empty-state {
+  color: var(--text-secondary);
+  text-align: center;
+  padding: 2rem;
+  font-style: italic;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.actions button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.actions button.primary {
+  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  color: var(--background-dark);
+}
+
+.actions button.secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+}
+
+.actions button:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .pattern-detector {
+    padding: 1rem;
+  }
+
+  .controls-section {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}

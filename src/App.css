@@ -1,0 +1,413 @@
+:root {
+  --primary-color: #0077b6; /* Deep scientific blue */
+  --secondary-color: #ff6b35; /* Vibrant orange */
+  --background-color: #000000; /* Pure black */
+  --panel-color: #1a1a1a; /* Dark gray */
+  --text-color: #ffffff; /* Pure white */
+  --border-color: #333333; /* Medium gray */
+  --indicator-color: #555555; /* Light gray */
+}
+
+body {
+  margin: 0;
+  font-family: 'Courier New', monospace;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.instrument-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 20px;
+  background-color: var(--panel-color);
+  border: 1px solid var(--border-color);
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.status-indicators {
+  display: flex;
+  gap: 10px;
+}
+
+.status-led {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  background-color: var(--indicator-color);
+}
+
+.status-led.green { background-color: #00ff00; }
+.status-led.yellow { background-color: #ffff00; }
+.status-led.red { background-color: #ff0000; }
+
+.control-section {
+  padding: 20px;
+  margin: 20px 0;
+  border: 1px solid var(--border-color);
+  background-color: var(--background-color);
+}
+
+.control-group {
+  margin-bottom: 15px;
+}
+
+.control-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--primary-color);
+}
+
+.control-group input[type="range"] {
+  width: 100%;
+  background: transparent;
+  -webkit-appearance: none;
+}
+
+.control-group input[type="range"]::-webkit-slider-runnable-track {
+  height: 3px;
+  background: var(--indicator-color);
+}
+
+.control-group input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  background: var(--primary-color);
+  border-radius: 2px;
+  border: 1px solid var(--border-color);
+}
+
+.value-display {
+  margin-top: 5px;
+  padding: 5px;
+  background: var(--panel-color);
+  border: 1px solid var(--primary-color);
+  text-align: center;
+  color: var(--primary-color);
+}
+
+.visualization-area {
+  flex: 1;
+  margin: 20px 0;
+  border: 1px solid var(--border-color);
+  background-color: var(--background-color);
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 20px;
+  padding: 20px;
+}
+
+.control-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.quantum-state-controls {
+  padding: 15px;
+  border: 1px solid var(--border-color);
+}
+
+.quantum-state-controls h3 {
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.quantum-state {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.quantum-state input[type="range"] {
+  grid-column: 1 / -1;
+}
+
+.energy-level-display {
+  height: 120px;
+  background: var(--panel-color);
+  border: 1px solid var(--border-color);
+  position: relative;
+}
+
+.energy-level {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: var(--primary-color);
+}
+
+.measurement-panel {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 15px;
+  border: 1px solid var(--border-color);
+}
+
+.measurement-indicator {
+  text-align: center;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+}
+
+.measurement-value {
+  font-size: 1.2em;
+  color: var(--primary-color);
+  margin: 5px 0;
+}
+
+.measurement-label {
+  color: var(--secondary-color);
+  font-size: 0.9em;
+}
+
+.oscilloscope {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--panel-color);
+  grid-column: 2 / 3;
+  grid-row: 1 / 3;
+}
+
+.waveform {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50%;
+  background: repeating-linear-gradient(
+    to top,
+    var(--primary-color),
+    var(--primary-color) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  border-top: 1px solid var(--primary-color);
+}
+
+.resonance-controls {
+  padding: 15px;
+  border: 1px solid var(--border-color);
+}
+
+.resonance-frequency {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.resonance-frequency input {
+  width: 100%;
+}
+
+.spectrum-analyzer {
+  height: 200px;
+  background: var(--panel-color);
+  border: 1px solid var(--border-color);
+  position: relative;
+  margin-top: 15px;
+}
+
+.spectrum-line {
+  position: absolute;
+  bottom: 0;
+  height: 100%;
+  width: 2px;
+  background: var(--secondary-color);
+}
+
+.quantum-state-visualizer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  height: 300px;
+  background: var(--panel-color);
+  border: 1px solid var(--border-color);
+  padding: 15px;
+}
+
+.probability-distribution {
+  position: relative;
+  background: var(--background-color);
+  border: 1px solid var(--border-color);
+}
+
+.probability-bar {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: var(--primary-color);
+  transition: height 0.2s ease;
+}
+
+.phase-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  background: var(--secondary-color);
+  transform-origin: bottom center;
+  transition: transform 0.2s ease;
+}
+
+/* Bloch Sphere Visualization */
+.bloch-sphere {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, var(--panel-color) 0%, var(--background-color) 70%);
+  border: 2px solid var(--primary-color);
+  overflow: hidden;
+  perspective: 1000px;
+}
+
+.bloch-axis {
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background: var(--border-color);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.bloch-axis.y {
+  transform: translateX(-50%) rotate(90deg);
+}
+
+.bloch-axis.z {
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.bloch-state {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: var(--secondary-color);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease;
+  box-shadow: 0 0 8px var(--secondary-color);
+}
+
+/* Superposition Visualization */
+.superposition-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 15px;
+}
+
+.superposition-state {
+  position: relative;
+  height: 100px;
+  background: var(--panel-color);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+.superposition-wave {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to right, 
+    transparent 0%, 
+    var(--primary-color) 50%, 
+    transparent 100%);
+  animation: wave 2s infinite linear;
+}
+
+@keyframes wave {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Entanglement Visualization */
+.entanglement-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 15px;
+}
+
+.entangled-state {
+  position: relative;
+  height: 120px;
+  background: var(--panel-color);
+  border: 1px solid var(--border-color);
+}
+
+.entanglement-line {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: var(--secondary-color);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.entanglement-point {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Measurement Histogram */
+.measurement-histogram {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 5px;
+  height: 150px;
+  align-items: end;
+  padding: 15px;
+  background: var(--panel-color);
+  border: 1px solid var(--border-color);
+}
+
+.histogram-bar {
+  background: var(--primary-color);
+  transition: height 0.3s ease;
+  position: relative;
+}
+
+.histogram-label {
+  position: absolute;
+  bottom: -20px;
+  width: 100%;
+  text-align: center;
+  color: var(--secondary-color);
+  font-size: 0.8em;
+}
+
+.phase-space {
+  position: relative;
+  background: var(--background-color);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.phase-point {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--secondary-color);
+  border-radius: 50%;
+  transform: translate(-50%, 50%);
+  transition: all 0.2s ease;
+}

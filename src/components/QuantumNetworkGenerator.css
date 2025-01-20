@@ -1,0 +1,365 @@
+.quantum-network-generator {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+  height: 100%;
+  background: var(--background-light);
+  border-radius: 12px;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+}
+
+.text-input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.text-input label {
+  color: var(--text-primary);
+  font-weight: 500;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.text-input label .tooltip {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 300px;
+  padding: 0.75rem;
+  margin-top: 0.5rem;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: normal;
+  line-height: 1.4;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.text-input label:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.text-input label .tooltip::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 20px;
+  width: 10px;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.8);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  transform: rotate(45deg);
+}
+
+.text-input textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9rem;
+  resize: vertical;
+}
+
+.text-input textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(99, 179, 237, 0.2);
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.control-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  position: relative;
+}
+
+.control-group label .tooltip {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100%);
+  width: 250px;
+  padding: 0.75rem;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: normal;
+  line-height: 1.4;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.control-group label:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+.control-group label .tooltip::before {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 10px;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.8);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.control-group input[type="range"] {
+  width: 100%;
+  height: 4px;
+  background: rgba(99, 179, 237, 0.3);
+  border-radius: 2px;
+}
+
+.control-group input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.enhanced-learning-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(99, 179, 237, 0.1);
+  border: 1px solid rgba(99, 179, 237, 0.2);
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.enhanced-learning-button span {
+  position: relative;
+}
+
+.enhanced-learning-button .tooltip {
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100%);
+  width: 280px;
+  padding: 0.75rem;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: normal;
+  line-height: 1.4;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.enhanced-learning-button:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+.enhanced-learning-button .tooltip::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 10px;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.8);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.enhanced-learning-button:hover:not(:disabled) {
+  background: rgba(99, 179, 237, 0.2);
+  border-color: rgba(99, 179, 237, 0.3);
+}
+
+.enhanced-learning-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.enhanced-learning-button.active {
+  background: rgba(99, 179, 237, 0.3);
+  border-color: var(--primary-color);
+}
+
+.enhanced-learning-button .indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--text-secondary);
+  transition: background-color 0.2s ease;
+}
+
+.enhanced-learning-button.active .indicator {
+  background: var(--primary-color);
+}
+
+.value-display {
+  color: var(--primary-color);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.visualization {
+  flex: 1;
+  min-height: 600px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 8px;
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.visualization > div {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 600px;
+}
+
+.visualization canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.placeholder {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--text-secondary);
+  font-style: italic;
+  text-align: center;
+  padding: 2rem;
+}
+
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--primary-color);
+  font-style: normal;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.loading::before {
+  content: '';
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(99, 179, 237, 0.2);
+  border-top-color: var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading .processing-time {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+}
+
+.error-message {
+  padding: 1rem;
+  margin-top: 1rem;
+  background: rgba(255, 99, 71, 0.2);
+  border: 1px solid rgba(255, 99, 71, 0.3);
+  border-radius: 6px;
+  color: #ff6347;
+  font-size: 0.9rem;
+}
+
+/* Force Graph container */
+.visualization > div {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.visualization canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Force Graph Customizations */
+.quantum-network-generator canvas {
+  border-radius: 8px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .quantum-network-generator {
+    padding: 1rem;
+  }
+
+  .controls {
+    padding: 1rem;
+  }
+
+  .visualization {
+    min-height: 300px;
+  }
+}
