@@ -9,7 +9,7 @@ interface FieldParameters {
 }
 
 const FieldConstructorContainer: FC = () => {
-  const [, setParameters] = useState<FieldParameters>({
+  const [parameters, setParameters] = useState<FieldParameters>({
     dimensions: 512,
     coherence: 0.5,
     baseFreq: 10,

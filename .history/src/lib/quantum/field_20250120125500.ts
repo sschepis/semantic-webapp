@@ -2,25 +2,63 @@ import { Complex } from './complex';
 import { 
   QuantumField as IQuantumField,
   QuantumNetwork,
-  QuantumNode,
-  QuantumState as DecodedState
+  QuantumNode
 } from '../../types/quantum';
+
+interface DecodedState {
+  magnitude: number[];
+  phase: number[];
+}
 
 export class QuantumField implements IQuantumField {
   public dimensions: number;
   public values: Complex[];
   public phase: number[];
   public coherence: number;
+  public intelligence: number;
+  public entropy: number;
+  public energy: number;
+  public information: number;
+  public complexity: number;
+  public learningRate: number;
+  public development: number;
   private primeFactors: number[];
   private spectralForm: Complex[];
+  private systemState: {
+    Ψ: number; // Subjective experience
+    E: number; // Energy
+    S: number; // Entropy
+    I: number; // Information
+    Ω: number; // Synchronization
+    C: number; // Complexity
+    L: number; // Learning
+    D: number; // Development
+  };
   
   constructor(dimensions: number) {
     this.dimensions = dimensions;
     this.values = Array(dimensions).fill(new Complex(0, 0));
     this.phase = Array(dimensions).fill(0);
     this.coherence = 0;
+    this.intelligence = 0;
+    this.entropy = 0;
+    this.energy = 0;
+    this.information = 0;
+    this.complexity = 0;
+    this.learningRate = 0;
+    this.development = 0;
     this.primeFactors = [];
     this.spectralForm = Array(dimensions).fill(new Complex(0, 0));
+    this.systemState = {
+      Ψ: 0,
+      E: 0,
+      S: 0,
+      I: 0,
+      Ω: 0,
+      C: 0,
+      L: 0,
+      D: 0
+    };
   }
 
   private getPrimeFactors(n: number): number[] {
@@ -178,19 +216,9 @@ export class QuantumField implements IQuantumField {
     if (!state || !(state instanceof QuantumField)) {
       throw new Error('Invalid quantum state');
     }
-    
-    const magnitude = state.values.map(v => v.magnitude());
-    const probability = magnitude.map(m => m * m);
-    
     return {
-      id: Math.random().toString(36).substr(2, 9), // Generate unique ID
-      amplitude: Math.sqrt(probability.reduce((sum, p) => sum + p, 0)),
-      phase: state.phase.reduce((avg, p) => avg + p, 0) / state.phase.length,
-      probability: probability.reduce((sum, p) => sum + p, 0) / probability.length,
-      connections: [],
-      dimensions: [state.dimensions],
-      harmonics: state.spectralForm.map(c => c.magnitude()),
-      coherence: state.coherence
+      magnitude: state.values.map(v => v.magnitude()),
+      phase: state.phase
     };
   }
 
@@ -199,5 +227,98 @@ export class QuantumField implements IQuantumField {
       throw new Error('Invalid quantum states');
     }
     return this.computeResonance(state1) * this.computePhaseCoherence(state2);
+  }
+
+  // New methods for system dynamics
+  calculateIntelligence(kB: number): number {
+    const Ωmax = Math.max(
+      this.systemState.Ω,
+      this.systemState.E,
+      this.systemState.S,
+      this.systemState.I,
+      this.systemState.C
+    );
+    this.intelligence = kB * Math.log(Ωmax);
+    return this.intelligence;
+  }
+
+  calculateEntropyChange(kB: number, P: number[], Q: number[]): number {
+    if (P.length !== Q.length) {
+      throw new Error('Probability distributions must have same length');
+    }
+    this.entropy = kB * P.reduce((sum, p, i) => {
+      return sum + p * Math.log(p / Q[i]);
+    }, 0);
+    return this.entropy;
+  }
+
+  updateSystemState(dt: number): void {
+    // Update subjective experience
+    this.systemState.Ψ += dt * (
+      this.systemState.E * this.systemState.S * 
+      this.systemState.I * this.systemState.Ω
+    );
+
+    // Update energy flow
+    this.systemState.E += dt * (
+      this.energy - this.systemState.S + this.systemState.I
+    );
+
+    // Update information flow
+    this.systemState.I += dt * (
+      this.information - this.systemState.Ψ + 
+      this.systemState.Ω * this.systemState.C
+    );
+
+    // Update synchronization
+    this.systemState.Ω = this.values.reduce((sum, v, i) => {
+      const p = v.magnitude();
+      return sum + p * Math.log(p / (this.phase[i] * this.coherence));
+    }, 0);
+
+    // Update complexity
+    this.systemState.C = -this.values.reduce((sum, v) => {
+      const p = v.magnitude();
+      return sum + p * Math.log(p);
+    }, 0);
+
+    // Update learning
+    this.systemState.L = this.learningRate * this.systemState.Ω;
+
+    // Update development
+    this.systemState.D = 0.1 * this.systemState.C + 
+      0.9 * this.systemState.Ψ * this.systemState.E;
+  }
+
+  calculateIntegratedInformation(): number {
+    const states = this.values.map(v => v.magnitude());
+    const total = states.reduce((sum, p) => sum + p, 0);
+    const normalized = states.map(p => p / total);
+    
+    return normalized.reduce((sum, p, i) => {
+      const partitions = this.getPartitions(i);
+      return sum + partitions.reduce((partSum, part) => {
+        const partProb = part.reduce((pSum, idx) => pSum + normalized[idx], 0);
+        return partSum + (-1)**part.length * partProb * Math.log(partProb);
+      }, 0);
+    }, 0);
+  }
+
+  private getPartitions(index: number): number[][] {
+    // Helper function for integrated information calculation
+    const partitions: number[][] = [];
+    const max = 1 << this.dimensions;
+    
+    for (let i = 0; i < max; i++) {
+      if (i & (1 << index)) {
+        const part = [];
+        for (let j = 0; j < this.dimensions; j++) {
+          if (i & (1 << j)) part.push(j);
+        }
+        partitions.push(part);
+      }
+    }
+    
+    return partitions;
   }
 }

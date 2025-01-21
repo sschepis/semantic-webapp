@@ -1,10 +1,6 @@
 import { Complex } from './complex';
-import { 
-  QuantumField as IQuantumField,
-  QuantumNetwork,
-  QuantumNode,
-  QuantumState as DecodedState
-} from '../../types/quantum';
+
+import { QuantumField as IQuantumField } from '../../types/quantum';
 
 export class QuantumField implements IQuantumField {
   public dimensions: number;
@@ -158,13 +154,13 @@ export class QuantumField implements IQuantumField {
     }
   }
 
-  encodeNetwork(network: QuantumNetwork): QuantumField[] {
+  encodeNetwork(network: any): any[] {
     if (!network || !network.nodes) return [];
-    return network.nodes.map((node: QuantumNode) => this.encodeNode(node));
+    return network.nodes.map((node: any) => this.encodeNode(node));
   }
 
-  encodeNode(node: QuantumNode): QuantumField {
-    if (!node) throw new Error('Node cannot be null');
+  encodeNode(node: any): any {
+    if (!node) return null;
     const hash = node.id.split('').reduce((h: number, c: string) => {
       const char = c.charCodeAt(0);
       return ((h << 5) - h) + char;
@@ -174,29 +170,17 @@ export class QuantumField implements IQuantumField {
     return state;
   }
 
-  decodeState(state: QuantumField): DecodedState {
-    if (!state || !(state instanceof QuantumField)) {
-      throw new Error('Invalid quantum state');
-    }
-    
-    const magnitude = state.values.map(v => v.magnitude());
-    const probability = magnitude.map(m => m * m);
-    
+  decodeState(state: any): any {
+    if (!state || !(state instanceof QuantumField)) return null;
     return {
-      id: Math.random().toString(36).substr(2, 9), // Generate unique ID
-      amplitude: Math.sqrt(probability.reduce((sum, p) => sum + p, 0)),
-      phase: state.phase.reduce((avg, p) => avg + p, 0) / state.phase.length,
-      probability: probability.reduce((sum, p) => sum + p, 0) / probability.length,
-      connections: [],
-      dimensions: [state.dimensions],
-      harmonics: state.spectralForm.map(c => c.magnitude()),
-      coherence: state.coherence
+      magnitude: state.values.map(v => v.magnitude()),
+      phase: state.phase
     };
   }
 
-  calculateCoherence(state1: QuantumField, state2: QuantumField): number {
+  calculateCoherence(state1: any, state2: any): number {
     if (!(state1 instanceof QuantumField) || !(state2 instanceof QuantumField)) {
-      throw new Error('Invalid quantum states');
+      return 0;
     }
     return this.computeResonance(state1) * this.computePhaseCoherence(state2);
   }

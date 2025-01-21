@@ -11,6 +11,7 @@ export interface SearchResult {
 
 export interface SemanticSearchProps {
   onSearch: (query: string, filters: SearchFilters) => void;
+  onResultSelect: (resultId: string) => void;
 }
 
 interface SearchFilters {
@@ -20,7 +21,8 @@ interface SearchFilters {
 }
 
 const SemanticSearch: FC<SemanticSearchProps> = ({
-  onSearch
+  onSearch,
+  onResultSelect,
 }) => {
   const [query, setQuery] = useState('');
   const [filters, setFilters] = useState<SearchFilters>({

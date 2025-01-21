@@ -85,7 +85,7 @@ const TemporalNetworkAnalyzer: React.FC<TemporalNetworkAnalyzerProps> = ({
           nodeAutoColorBy="group"
           nodeCanvasObject={(node: ForceGraphNode, ctx: CanvasRenderingContext2D) => {
             const [x, y] = [node.x || 0, node.y || 0];
-            const trend = getNodeActivityTrend(node.id);
+            const trend = getNodeActivityTrend(n.id);
             
             // Draw node
             ctx.beginPath();
@@ -106,7 +106,7 @@ const TemporalNetworkAnalyzer: React.FC<TemporalNetworkAnalyzerProps> = ({
             ctx.fillStyle = '#ffffff';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
-            ctx.fillText(node.label, x, y + 20);
+            ctx.fillText(n.label, x, y + 20);
           }}
           linkColor={() => 'rgba(255, 255, 255, 0.3)'}
           linkWidth={1}

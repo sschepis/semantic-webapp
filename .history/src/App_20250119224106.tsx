@@ -5,6 +5,7 @@ import { QuantumNode } from './types/quantum'
 
 function App() {
   const [networkScale, setNetworkScale] = useState(1.0)
+  const [selectedNode, setSelectedNode] = useState<string | null>(null)
   const [quantumState, setQuantumState] = useState({
     amplitude: 0.5,
     phase: 0.0
@@ -68,9 +69,7 @@ function App() {
 
         <div className="visualization-area">
           <QuantumNetworkGenerator
-            onNodeSelect={(nodeId: string) => {
-              console.log('Node selected:', nodeId)
-            }}
+            onNodeSelect={(nodeId: string) => setSelectedNode(nodeId)}
             onNetworkGenerated={(nodes: QuantumNode[]) => {
               console.log('Network generated with nodes:', nodes.length)
             }}

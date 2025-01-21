@@ -220,7 +220,7 @@ export class StateVisualizer {
     const radius = Math.min(options.width, options.height) * 0.3;
 
     // Draw connections
-    state.connections.forEach((_, i) => {
+    state.connections.forEach((connectionId, i) => {
       const angle = (i / state.connections.length) * Math.PI * 2;
       const x = centerX + Math.cos(angle) * radius;
       const y = centerY + Math.sin(angle) * radius;

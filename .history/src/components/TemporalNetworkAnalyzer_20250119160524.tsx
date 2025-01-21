@@ -1,14 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect } from 'react';
 import { ForceGraph2D } from 'react-force-graph';
+import NodeObject from 'graphology-types';
 import { QuantumNode, QuantumNetwork } from '../types/quantum';
-
-interface ForceGraphNode extends QuantumNode {
-  x?: number;
-  y?: number;
-  vx?: number;
-  vy?: number;
-}
 
 interface TemporalNetworkAnalyzerProps {
   networks: QuantumNetwork[];
@@ -83,9 +77,10 @@ const TemporalNetworkAnalyzer: React.FC<TemporalNetworkAnalyzerProps> = ({
         <ForceGraph2D
           graphData={currentNetwork}
           nodeAutoColorBy="group"
-          nodeCanvasObject={(node: ForceGraphNode, ctx: CanvasRenderingContext2D) => {
+          nodeCanvasObject={(node: NodeObject<QuantumNode>, ctx: CanvasRenderingContext2D) => {
+            const n = node as QuantumNode & NodeObject<QuantumNode>;
             const [x, y] = [node.x || 0, node.y || 0];
-            const trend = getNodeActivityTrend(node.id);
+            const trend = getNodeActivityTrend(n.id);
             
             // Draw node
             ctx.beginPath();
@@ -106,11 +101,11 @@ const TemporalNetworkAnalyzer: React.FC<TemporalNetworkAnalyzerProps> = ({
             ctx.fillStyle = '#ffffff';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
-            ctx.fillText(node.label, x, y + 20);
+            ctx.fillText(n.label, x, y + 20);
           }}
           linkColor={() => 'rgba(255, 255, 255, 0.3)'}
           linkWidth={1}
-          onNodeClick={(node: ForceGraphNode) => onNodeSelect(node.id)}
+          onNodeClick={(node: NodeObject<QuantumNode>) => onNodeSelect((node as QuantumNode & NodeObject<QuantumNode>).id)}
         />
       )}
     </div>

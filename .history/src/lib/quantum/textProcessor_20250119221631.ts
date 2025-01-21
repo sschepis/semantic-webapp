@@ -36,7 +36,7 @@ export class TextProcessor {
       });
 
       return {
-        tokens: processedTokens.map((_, i) => i), // Map to numeric IDs
+        tokens: processedTokens.map((t, i) => i), // Map to numeric IDs
         fields: processedTokens.map(t => t.field),
         networks: network,
       };

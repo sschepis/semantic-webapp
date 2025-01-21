@@ -3,7 +3,7 @@ import {
   QuantumField as IQuantumField,
   QuantumNetwork,
   QuantumNode,
-  QuantumState as DecodedState
+  DecodedState
 } from '../../types/quantum';
 
 export class QuantumField implements IQuantumField {
@@ -178,19 +178,9 @@ export class QuantumField implements IQuantumField {
     if (!state || !(state instanceof QuantumField)) {
       throw new Error('Invalid quantum state');
     }
-    
-    const magnitude = state.values.map(v => v.magnitude());
-    const probability = magnitude.map(m => m * m);
-    
     return {
-      id: Math.random().toString(36).substr(2, 9), // Generate unique ID
-      amplitude: Math.sqrt(probability.reduce((sum, p) => sum + p, 0)),
-      phase: state.phase.reduce((avg, p) => avg + p, 0) / state.phase.length,
-      probability: probability.reduce((sum, p) => sum + p, 0) / probability.length,
-      connections: [],
-      dimensions: [state.dimensions],
-      harmonics: state.spectralForm.map(c => c.magnitude()),
-      coherence: state.coherence
+      magnitude: state.values.map(v => v.magnitude()),
+      phase: state.phase
     };
   }
 

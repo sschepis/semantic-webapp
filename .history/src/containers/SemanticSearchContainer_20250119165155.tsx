@@ -8,7 +8,7 @@ interface SearchState {
 }
 
 const SemanticSearchContainer: FC = () => {
-  const [, setSearchState] = useState<SearchState>({
+  const [searchState, setSearchState] = useState<SearchState>({
     results: [],
     isSearching: false,
     selectedResult: null,
@@ -46,9 +46,18 @@ const SemanticSearchContainer: FC = () => {
     }, 1000);
   }, []);
 
+  const handleResultSelect = useCallback((resultId: string) => {
+    setSearchState(prev => ({
+      ...prev,
+      selectedResult: resultId,
+    }));
+    console.log('Selected result:', resultId);
+  }, []);
+
   return (
     <SemanticSearch
       onSearch={handleSearch}
+      onResultSelect={handleResultSelect}
     />
   );
 };

@@ -14,6 +14,7 @@ export interface QuantumQueryResult {
 
 export interface QuantumQueryProps {
   onQuerySubmit: (query: string, parameters: QueryParameters) => void;
+  onStateSelect: (stateId: string) => void;
 }
 
 interface QueryParameters {
@@ -24,7 +25,8 @@ interface QueryParameters {
 }
 
 const QuantumQuery: FC<QuantumQueryProps> = ({
-  onQuerySubmit
+  onQuerySubmit,
+  onStateSelect,
 }) => {
   const [query, setQuery] = useState('');
   const [parameters, setParameters] = useState<QueryParameters>({

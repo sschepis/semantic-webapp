@@ -50,6 +50,14 @@ const QuantumQueryContainer: FC = () => {
     }, 1500);
   }, []);
 
+  const handleStateSelect = useCallback((stateId: string) => {
+    setQueryState(prev => ({
+      ...prev,
+      selectedState: stateId,
+    }));
+    console.log('Selected quantum state:', stateId);
+  }, []);
+
   return (
     <QuantumQuery
       onQuerySubmit={handleQuerySubmit}

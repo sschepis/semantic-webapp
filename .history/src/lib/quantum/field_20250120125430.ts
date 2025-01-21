@@ -2,25 +2,63 @@ import { Complex } from './complex';
 import { 
   QuantumField as IQuantumField,
   QuantumNetwork,
-  QuantumNode,
-  QuantumState as DecodedState
+  QuantumNode
 } from '../../types/quantum';
+
+interface DecodedState {
+  magnitude: number[];
+  phase: number[];
+}
 
 export class QuantumField implements IQuantumField {
   public dimensions: number;
   public values: Complex[];
   public phase: number[];
   public coherence: number;
+  public intelligence: number;
+  public entropy: number;
+  public energy: number;
+  public information: number;
+  public complexity: number;
+  public learningRate: number;
+  public development: number;
   private primeFactors: number[];
   private spectralForm: Complex[];
+  private systemState: {
+    Ψ: number; // Subjective experience
+    E: number; // Energy
+    S: number; // Entropy
+    I: number; // Information
+    Ω: number; // Synchronization
+    C: number; // Complexity
+    L: number; // Learning
+    D: number; // Development
+  };
   
   constructor(dimensions: number) {
     this.dimensions = dimensions;
     this.values = Array(dimensions).fill(new Complex(0, 0));
     this.phase = Array(dimensions).fill(0);
     this.coherence = 0;
+    this.intelligence = 0;
+    this.entropy = 0;
+    this.energy = 0;
+    this.information = 0;
+    this.complexity = 0;
+    this.learningRate = 0;
+    this.development = 0;
     this.primeFactors = [];
     this.spectralForm = Array(dimensions).fill(new Complex(0, 0));
+    this.systemState = {
+      Ψ: 0,
+      E: 0,
+      S: 0,
+      I: 0,
+      Ω: 0,
+      C: 0,
+      L: 0,
+      D: 0
+    };
   }
 
   private getPrimeFactors(n: number): number[] {
@@ -178,19 +216,9 @@ export class QuantumField implements IQuantumField {
     if (!state || !(state instanceof QuantumField)) {
       throw new Error('Invalid quantum state');
     }
-    
-    const magnitude = state.values.map(v => v.magnitude());
-    const probability = magnitude.map(m => m * m);
-    
     return {
-      id: Math.random().toString(36).substr(2, 9), // Generate unique ID
-      amplitude: Math.sqrt(probability.reduce((sum, p) => sum + p, 0)),
-      phase: state.phase.reduce((avg, p) => avg + p, 0) / state.phase.length,
-      probability: probability.reduce((sum, p) => sum + p, 0) / probability.length,
-      connections: [],
-      dimensions: [state.dimensions],
-      harmonics: state.spectralForm.map(c => c.magnitude()),
-      coherence: state.coherence
+      magnitude: state.values.map(v => v.magnitude()),
+      phase: state.phase
     };
   }
 

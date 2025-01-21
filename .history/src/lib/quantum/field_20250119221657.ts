@@ -1,10 +1,6 @@
 import { Complex } from './complex';
-import { 
-  QuantumField as IQuantumField,
-  QuantumNetwork,
-  QuantumNode,
-  QuantumState as DecodedState
-} from '../../types/quantum';
+
+import { QuantumField as IQuantumField } from '../../types/quantum';
 
 export class QuantumField implements IQuantumField {
   public dimensions: number;
@@ -156,48 +152,5 @@ export class QuantumField implements IQuantumField {
     if (norm > 0) {
       this.values = this.values.map(v => v.scale(1 / norm));
     }
-  }
-
-  encodeNetwork(network: QuantumNetwork): QuantumField[] {
-    if (!network || !network.nodes) return [];
-    return network.nodes.map((node: QuantumNode) => this.encodeNode(node));
-  }
-
-  encodeNode(node: QuantumNode): QuantumField {
-    if (!node) throw new Error('Node cannot be null');
-    const hash = node.id.split('').reduce((h: number, c: string) => {
-      const char = c.charCodeAt(0);
-      return ((h << 5) - h) + char;
-    }, 0);
-    const state = new QuantumField(this.dimensions);
-    state.initialize(hash.toString());
-    return state;
-  }
-
-  decodeState(state: QuantumField): DecodedState {
-    if (!state || !(state instanceof QuantumField)) {
-      throw new Error('Invalid quantum state');
-    }
-    
-    const magnitude = state.values.map(v => v.magnitude());
-    const probability = magnitude.map(m => m * m);
-    
-    return {
-      id: Math.random().toString(36).substr(2, 9), // Generate unique ID
-      amplitude: Math.sqrt(probability.reduce((sum, p) => sum + p, 0)),
-      phase: state.phase.reduce((avg, p) => avg + p, 0) / state.phase.length,
-      probability: probability.reduce((sum, p) => sum + p, 0) / probability.length,
-      connections: [],
-      dimensions: [state.dimensions],
-      harmonics: state.spectralForm.map(c => c.magnitude()),
-      coherence: state.coherence
-    };
-  }
-
-  calculateCoherence(state1: QuantumField, state2: QuantumField): number {
-    if (!(state1 instanceof QuantumField) || !(state2 instanceof QuantumField)) {
-      throw new Error('Invalid quantum states');
-    }
-    return this.computeResonance(state1) * this.computePhaseCoherence(state2);
   }
 }

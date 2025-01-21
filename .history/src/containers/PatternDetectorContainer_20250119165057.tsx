@@ -10,7 +10,7 @@ interface DetectionSettings {
 }
 
 const PatternDetectorContainer: FC = () => {
-  const [, setSettings] = useState<DetectionSettings>({
+  const [settings, setSettings] = useState<DetectionSettings>({
     threshold: 0.7,
     patternType: 'resonance',
     showStrength: true,
@@ -18,7 +18,7 @@ const PatternDetectorContainer: FC = () => {
     showConfidence: true,
   });
 
-  const [, setPatterns] = useState<Pattern[]>([]);
+  const [patterns, setPatterns] = useState<Pattern[]>([]);
 
   const handlePatternDetected = useCallback((pattern: Pattern) => {
     setPatterns(prev => [...prev, pattern]);
